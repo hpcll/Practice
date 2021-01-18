@@ -12,12 +12,15 @@ url = r'http://time1909.beijing-time.org/time.asp'
 r = requests.get(url=url, headers=hea)
 tm = r.text
 
+
 def data(a):
+    """提取'='后面的字符串"""
     return re.findall(r"=(.*)", a)[0]
 
 def time_str():
-    list = tm.split(";")
-    date = [None] * (len(list) - 2)
+    """将提取到的字符串转为list"""
+    list = tm.split(";")#用;将获取到的字符串分割变成list
+    date = [None] * (len(list) - 2)#建立一个有长度的空list
     for i in range(1, len(list) - 1):
         date[i - 1] = data(list[i])
     return date
@@ -25,7 +28,7 @@ def time_str():
 def Network_time():
     date = time_str()
     list1 = ["year", "month", "day", "hour", "minute", "second", "week"]
-    Dict = dict(zip(list1, date))
+    Dict = dict(zip(list1, date))#将date和list转换成字典
     year = Dict['year']
     month = Dict['month']
     day = Dict['day']

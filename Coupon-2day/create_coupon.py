@@ -14,6 +14,7 @@ list3 = list + list1 + list2
 
 
 def mysql_info(sql,data):
+    """连接数据库，并提交"""
     db = pymysql.connect(host = "47.242.147.185",
                          database = "mysql",
                          user="root",
@@ -33,22 +34,23 @@ def mysql_info(sql,data):
 
 
 def coupon():
+    """将list3里面的字符，取16位，随机组成list，并将list转为字符串"""
     zf = random.sample(list3,16)
     coupon_id = "".join(zf)#list转字符串
     return coupon_id
 
 
 if __name__ == '__main__':
-    now = Network_time()[2]
+    now = Network_time()[2]#获取datetime格式的网络时间
     # print(type(now))
-    delta = datetime.timedelta(days=7)
-    n_days = now + delta
+    delta = datetime.timedelta(days=7)#7天时间
+    n_days = now + delta#在获取的网络时间上加7天，生成失效时间
     # print(n_days)
-    Expired_date = n_days.strftime('%Y-%m-%d %H:%M:%S')
+    Expired_date = n_days.strftime('%Y-%m-%d %H:%M:%S')#将datetime转为字符串格式
     # print(type(Expired_date))
     count = 0
     new_list = []
-    while count < 200:
+    while count < 200:#生成200个字符串并将字符串写入mysql
         coupon_id = coupon()
         # count = count + 1
         sql = "insert into coupon (coupon_id,Expired_date) values(%s,%s)"
