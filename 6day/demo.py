@@ -1,10 +1,10 @@
 import re
 
-line = "settings7"
+line = "./wj/冒泡.py"
 
-matchObj = re.match(r'[a-zA-Z]*', line,  re.M)#只提取字符串中的字母
-line1 = matchObj.group()#将提取的字符串赋值给变量 line1
-
+matchObj = re.match(r'.*/(.*)', line,  re.M)#只提取字符串中的字母
+line1 = matchObj.group(1)#将提取的字符串赋值给变量 line1
+print(line1)
 # re模块的使用
 """
 re.search(pattern, string, flags=0)
