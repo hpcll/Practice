@@ -1,0 +1,16 @@
+
+测试脚本(1920,1080)：
+Pyautogui.click(1000,500)#原始脚本中的坐标值
+
+Pyautogui.moveTo(100,50)
+
+Pyautogui.doubleClick(800,600)
+
+
+
+transfer coords:
+
+
+
+transfer coords:
+
