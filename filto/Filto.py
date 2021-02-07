@@ -1,6 +1,7 @@
 #coding:utf-8
 import os
 import time
+import re
 """
 大概思路：
 1.输入本次需要检查的 多国文案 界面的 Activity
@@ -11,7 +12,7 @@ import time
 首页：com.video.editor.filto/com.gameinlife.color.paint.filto.activity.ActivitySplash
 splash：
 相册页：com.video.editor.filto/com.gameinlife.color.paint.filto.activity.ActivityMediaSelect
-
+后门页面：com.video.editor.filto/com.gameinlife.color.paint.filto.test.ActivitySetting
 """
 """#首页按钮
 os.system('adb shell input tap 768 1981')#首页点击图片按钮
@@ -42,7 +43,25 @@ os.system("adb shell input tap 341 2151 ")#分享页tiktok
 os.system("adb shell input tap 544 2151 ")#分享页snapchat
 os.system("adb shell input tap 730 2151 ")#分享页facebook
 os.system("adb shell input tap 936 2151 ")#分享页更多
+#切换语言对应的坐标
+os.system("adb shell input tap 470 611 ")#切换语言
+os.system('adb shell input tap 527 619')#德语
+os.system('adb shell input tap 527 750')#英语
+os.system('adb shell input tap 527 884')#西班牙语
+os.system('adb shell input tap 527 1035')#法语
+os.system('adb shell input tap 527 1148')#意大利语
+os.system('adb shell input tap 527 1281')#日语
+os.system('adb shell input tap 527 1412')#韩语
+os.system('adb shell input tap 527 1543')#葡萄牙语
+os.system('adb shell input tap 527 1675')#俄语
+os.system('adb shell input tap 527 1807 ')#中文简体
+os.system('adb shell input tap 527 1937')#中文繁体
+os.system('adb shell input tap 530 1937')#应用
 """
+
+def open_option():
+    os.system('adb shell am force-stop com.video.editor.filto ')  # 杀死 app
+    os.system('adb shell am start com.video.editor.filto/com.gameinlife.color.paint.filto.test.ActivitySetting')  # 打开app首页
 
 
 #截图
@@ -76,7 +95,6 @@ def join_video_select_page():#进入视频选择页
     print("正在保存视频相册页截图。。。。")
     Screenshot_img('video_page')
     time.sleep(3)
-
 
 
 def join_photo_select_page():#进入图片选择页
@@ -117,10 +135,10 @@ def join_share_page():
     print("正在保存分享页截图。。。。")
     Screenshot_img('share_page')  # 视频页，滤镜页面截图
 
-
-if __name__ == '__main__':
-    join_share_page()
-
+#
+# if __name__ == '__main__':
+#     join_home_page()#打开首页并截图
+#     join_share_page()#打开分享页并截图，会截4张图。分别是：home.png,photo_page.png,
 
 
 

@@ -4,11 +4,11 @@ X1,Y1 = 1920,1080#修改为编写和调试原始脚本的显示器系统的分�
 
 X2,Y2 = 1024,768 #后续移植到其他平台时的显示器系统的分辨率的值
 
-f = open('./coords.txt').readlines()
+f = open('coords.txt').readlines()
 
 s = "transfer coords:"
 
-with open('./coords.txt','a') as h:
+with open('coords.txt','a') as h:
 
     h.write('\n'*2+ s + '\n'*2)
 
