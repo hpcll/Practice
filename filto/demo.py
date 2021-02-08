@@ -25,21 +25,28 @@ import re
 
 old_res_x = 1080
 old_res_y = 2340
+#
+#
+# def iphone_info():
+#     with os.popen('adb shell wm size') as f:
+#         text = f.read()
+#     matchObj = re.match(r'.*: (.*)x(.*)?', text, re.M)
+#     new_res_x = int(matchObj.group(1))
+#     new_res_y = int(matchObj.group(2))
+#     return new_res_x, new_res_y
+#
+# def res_convert(x, y):
+#     """坐标换算"""
+#     new_res_x, new_res_y = iphone_info()
+#     new_x = x * old_res_x / new_res_x
+#     new_y = y * old_res_y / new_res_y
+#     return new_x, new_y
 
 
-def iphone_info():
-    with os.popen('adb shell wm size') as f:
-        text = f.read()
-    matchObj = re.match(r'.*: (.*)x(.*)?', text, re.M)
-    new_res_x = int(matchObj.group(1))
-    new_res_y = int(matchObj.group(2))
-    return new_res_x, new_res_y
+with os.popen("""adb exec-out uiautomator dump /dev/tty | awk '{gsub("UI hierchary dumped to: /dev/tty", "");print}'""") as f:
+    text = f.read()
+# print(text)
 
-def res_convert(x, y):
-    """坐标换算"""
-    new_res_x, new_res_y = iphone_info()
-    new_x = x * old_res_x / new_res_x
-    new_y = y * old_res_y / new_res_y
-    return new_x, new_y
+matchObj = re.findall(r'.*text="(.*)".*resource-id="(.*)".*bounds="(.*)" /></.*', text)
 
-os.system("""adb exec-out uiautomator dump /dev/tty | awk '{gsub("UI hierchary dumped to: /dev/tty", "");print}'""")
+print(matchObj[0][0])
