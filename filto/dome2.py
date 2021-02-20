@@ -70,7 +70,7 @@ def Screenshot_img(mz):
     os.system('adb pull /sdcard/{}.png /Users/hupc/Desktop/{}.png'.format(mz,mz))#将问件从手机pull到电脑
 
 def join_home_page():
-    os.system('adb devices') #获取连接设备
+    # os.system('adb devices') #获取连接设备
     os.system('adb shell am force-stop com.video.editor.filto ')#杀死 app
     os.system('adb shell am start com.video.editor.filto/com.gameinlife.color.paint.filto.activity.ActivitySplash')#打开app首页
     time.sleep(1)
@@ -137,13 +137,18 @@ def join_share_page():
 
 
 if __name__ == '__main__':
-    join_home_page()#打开首页并截图
-    join_share_page()#打开分享页并截图，会截4张图。分别是：home.png,photo_page.png,
-    join_stting_page()#打开设置页
-    join_photo_edit()#打开打开图片编辑页
-    join_video_edit()#打开视频编辑页
-    join_photo_select_page()#打开图片选择页
-    join_video_select_page()#打开视频选择页
+    msg = os.popen("adb devices").read().replace('\n', '').replace('\r', '')
+    if msg == 'List of devices attached':
+        print("设备未连接，请连接设备后重试")
+    else:
+        print("设备已连接。。。。。")
+        join_home_page()#打开首页并截图
+        join_share_page()#打开分享页并截图，会截4张图。分别是：home.png,photo_page.png,
+        join_stting_page()#打开设置页
+        join_photo_edit()#打开打开图片编辑页
+        join_video_edit()#打开视频编辑页
+        join_photo_select_page()#打开图片选择页
+        join_video_select_page()#打开视频选择页
 
 
 

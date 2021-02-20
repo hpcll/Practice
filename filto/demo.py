@@ -1,4 +1,6 @@
 import os
+import xml.etree.ElementTree as ET
+from subprocess import Popen, PIPE
 import re
 # os.system("adb shell input tap 470 611 ")#切换语言
 # os.system('adb shell input tap 527 619')#德语
@@ -45,8 +47,8 @@ old_res_y = 2340
 
 with os.popen("""adb exec-out uiautomator dump /dev/tty | awk '{gsub("UI hierchary dumped to: /dev/tty", "");print}'""") as f:
     text = f.read()
-# print(text)
-
-matchObj = re.findall(r'.*text="(.*)".*resource-id="(.*)".*bounds="(.*)" /></.*', text)
-
-print(matchObj[0][0])
+print(text)
+#
+# matchObj = re.findall(r'.*text="(.*)".*resource-id="(.*)".*bounds="(.*)" /></.*', text)
+#
+# print(matchObj[0])
