@@ -137,8 +137,9 @@ def join_share_page():
 
 
 if __name__ == '__main__':
-    msg = os.popen("adb devices").read().replace('\n', '').replace('\r', '')
-    if msg == 'List of devices attached':
+    msg = os.popen("adb devices").read()
+    print(msg)
+    if msg == 'List of devices attached\n\n':
         print("设备未连接，请连接设备后重试")
     else:
         print("设备已连接。。。。。")
