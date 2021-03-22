@@ -1,0 +1,10 @@
+#!/Users/hupc/PycharmProjects/Practice/bin/python
+# PBR Generated from 'console_scripts'
+
+import sys
+
+from uiautomator2.__main__ import main
+
+
+if __name__ == "__main__":
+    sys.exit(main())
